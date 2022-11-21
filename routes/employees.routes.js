@@ -2,6 +2,12 @@ const express = require("express");
 const router = express.Router();
 const ObjectId = require("mongodb").ObjectId;
 
+// const employeesSchema = new mongoose.Schema({
+//   firstName: { type: String, required: true },
+//   lastName: { type: String, required: true },
+//   department: { type: String, required: true }
+// });
+
 router.get("/employees", (req, res) => {
   req.db
     .collection("employees")

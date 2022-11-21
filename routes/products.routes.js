@@ -2,7 +2,6 @@
 
 const express = require("express");
 const router = express.Router();
-const db = require("./../db");
 const ObjectId = require("mongodb").ObjectId;
 
 router.get("/products", (req, res) => {
@@ -47,18 +46,25 @@ router.post("/products", (req, res) => {
 
 router.put("/products/:id", (req, res) => {
   const { name, client } = req.body;
-  req.db.collection("products").updateOneOne({_id: ObjectId(req.params.id)}, {$set: {name: name, client: client}},
-  (err) => {
-    if (err) res.status(500).json({ message: err });
-    else res.json({ message: "OK" });
-  }
+  req.db
+    .collection("products")
+    .updateOneOne(
+      { _id: ObjectId(req.params.id) },
+      { $set: { name: name, client: client } },
+      (err) => {
+        if (err) res.status(500).json({ message: err });
+        else res.json({ message: "OK" });
+      }
+    );
 });
 
 router.delete("/products/:id", (req, res) => {
-  req.db.collection("products").deleteOne({_id: ObjectId(req.params.id)}, (err) => {
-    if (err) res.status(500).json({ message: err });
-    else res.json({ message: "OK" });
-  });
+  req.db
+    .collection("products")
+    .deleteOne({ _id: ObjectId(req.params.id) }, (err) => {
+      if (err) res.status(500).json({ message: err });
+      else res.json({ message: "OK" });
+    });
 });
 
 module.exports = router;

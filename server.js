@@ -25,6 +25,7 @@ mongoose.connect("mongodb://localhost:27017/companyDB", {
   useNewUrlParser: true,
 });
 const db = mongoose.connection;
+db.collection("employees").insert({firstName: "Steve", lastName: "Wood", department: "Marketing"});
 
 db.once("open", () => {
   console.log("Connected to the database");

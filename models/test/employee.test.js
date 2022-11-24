@@ -28,7 +28,7 @@ describe("Employee", () => {
   it("should not throw an error if args are okay", () => {
     const cases = [
       { firstName: "John", lastName: "Doe", department: "IT" },
-      { firstName: "Amanda", lastName: "Watson", department: "IT" },
+      { firstName: "Amanda", lastName: "Doe", department: "IT" },
     ];
 
     for (let arg of cases) {
